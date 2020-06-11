@@ -2,7 +2,7 @@ import numpy as np
 import random
 from collections import namedtuple, deque
 
-from model import QNetwork
+from model import QNetwork,DuelQNetwork
 
 import torch
 import torch.nn.functional as F
@@ -22,7 +22,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 class Agent(object):
     """Interacts with and learns from the environment."""
 
-    def __init__(self, state_size, action_size, seed, dqn_type="double"):
+    def __init__(self, state_size, action_size, seed, dqn_type="double", dueling = True):
         """Initialize an Agent object.
         
         Params
@@ -38,8 +38,14 @@ class Agent(object):
         self.dqn_type = dqn_type
 
         # Q-Network
-        self.qnetwork_local = QNetwork(state_size, action_size, seed).to(device)
-        self.qnetwork_target = QNetwork(state_size, action_size, seed).to(device)
+        if dueling :
+            self.qnetwork_local = DuelQNetwork(state_size, action_size, seed).to(device)
+            self.qnetwork_target = DuelQNetwork(state_size, action_size, seed).to(device)
+        else:
+            self.qnetwork_local = QNetwork(state_size, action_size, seed).to(device)
+            self.qnetwork_target = QNetwork(state_size, action_size, seed).to(device)
+
+
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
         # self.scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(self.optimizer, 10, 2)
 
@@ -96,16 +102,15 @@ class Agent(object):
             )
 
         elif self.dqn_type == "double":
-            chosen_action_idx = torch.argmax(self.qnetwork_local(next_states), 1)
+            action_indxes = torch.argmax(self.qnetwork_local(next_states), 1)
 
             Q_targets_next = self.qnetwork_target(next_states)
 
             Q_targets_next = Q_targets_next[
-                torch.arange(BATCH_SIZE), chosen_action_idx
+                torch.arange(BATCH_SIZE), action_indxes
             ].unsqueeze(1)
 
-        elif self.dqn_type == "dual":
-            pass
+
         # Compute Q targets for current states
         Q_targets = rewards + (gamma * Q_targets_next * (1 - dones))
         Q_targets = Q_targets.detach()  # We dont backward on this network
