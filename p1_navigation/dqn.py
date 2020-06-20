@@ -15,7 +15,8 @@ def dqn(agent, env, brain_name, n_episodes=1000, max_t=1000, eps_start=1.0, eps_
     """
     scores = []                        # list containing scores from each episode
     scores_window = deque(maxlen=100)  # last 100 scores
-    eps = eps_start                    # initialize epsilon
+    eps = eps_start 
+    b=True                   # initialize epsilon
     for i_episode in range(1, n_episodes+1):
         env_info = env.reset(train_mode=True)[brain_name] # reset the environment
         state = env_info.vector_observations[0]
@@ -38,7 +39,8 @@ def dqn(agent, env, brain_name, n_episodes=1000, max_t=1000, eps_start=1.0, eps_
         print('\rEpisode {}\tAverage Score: {:.2f}'.format(i_episode, np.mean(scores_window)), end="")
         if i_episode % 100 == 0:
             print('\rEpisode {}\tAverage Score: {:.2f}'.format(i_episode, np.mean(scores_window)))
-        if np.mean(scores_window)>=13.0:
+        if b and np.mean(scores_window)>=13.0:
+            b=False
             print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.format(i_episode-100, np.mean(scores_window)))
             torch.save(agent.qnetwork_local.state_dict(), 'checkpoint.pth')
             # break
