@@ -25,10 +25,6 @@ The aim of this project is to train an agent to learn how to navigate in the ban
 
   The idea behind duel DQN is to change the model architecture. We will compute the value state function Q(s,a) as the sum of the Value function V(s) and an Advantage function A(s,a).
 
-  https://medium.com/analytics-vidhya/introduction-to-dueling-double-deep-q-network-d3qn-8353a42f9e55
-
-https://medium.com/@jonathan_hui/rl-dqn-deep-q-network-e207751f7ae4
-https://medium.com/@parsa_h_m/deep-reinforcement-learning-dqn-double-dqn-dueling-dqn-noisy-dqn-and-dqn-with-prioritized-551f621a9823
 
 #### Code description:
 
