@@ -27,15 +27,24 @@ The aim of this project is to train an agent to learn how to navigate in the ban
 
 #### Code description:
 
-- model.py :
-- dqn.py
-- agent.py
--
+- model.py : definition of the model architechture for Simple and Dueling networks.
+- dqn.py : implementation of DQN algorithm
+- agent.py : implementation of agent using DQN and Double DQN methods.
+- Navigation.ipynb : start environment, test it, train agent and plot scores.
 
 #### Hyperparameters:
 
+- BUFFER_SIZE = int(1e5)          # replay buffer size
+- BATCH_SIZE = 64                 # minibatch size
+- GAMMA = 0.99                    # discount factor
+- TAU = 1e-3                      # for soft update of target parameters
+- LR = 1e-4                       # learning rate
+- UPDATE_EVERY = 4                # how often to update the network
+
 #### Results:
+
+![image](results/double_dueling_dqn.png)
 
 #### Future Work:
 
-    Add Prioritized Experience Replay
+In my solution, experience transitions are sampled randomly from the replay memory. To improve the agent, we can add Prioritized Experience Replay, to replay important transitions more frequently, and therefore learn more efficiently. (https://arxiv.org/pdf/1511.05952.pdf)

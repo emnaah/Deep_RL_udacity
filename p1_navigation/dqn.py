@@ -23,7 +23,6 @@ def dqn(agent, env, brain_name, n_episodes=1000, max_t=1000, eps_start=1.0, eps_
         score = 0
         for t in range(max_t):
             action = agent.act(state, eps)
-            #action = action.astype(np.int32)
             env_info = env.step(action)[brain_name]        # send the action to the environment
             next_state = env_info.vector_observations[0]   # get the next state
             reward = env_info.rewards[0]                   # get the reward
