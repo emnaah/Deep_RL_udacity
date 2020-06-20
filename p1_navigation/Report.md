@@ -20,29 +20,17 @@ The aim of this project is to train an agent to learn how to navigate in the ban
   With this technique we seek more stability for the learning. for this, we use two similar neural networks 'local' and 'target'. The first one learns during the experience replay and the second one is a copy of the last episode of the first model and is used to calculate the target Q value. In other terms, we use the local model to get the indexes that give the best Q value and. Then we use them with the target network to get the best action.
   ![image](images/double_dqn.png)
 
-
 - ###### Dueling DQN:
 
-  The idea behind duel DQN is to change the model architecture. We will compute the value state function Q(s,a) as the sum of the Value function V(s) and an Advantage function A(s,a). Here, the value function tells how good it is to be in a state. The Q function measures how good is to choose a particular action when in this state.Thus, the advantage function subtracts the value of the state from the Q function to obtain a relative measure of the importance of each action.
-
-
-  ![image](images/dueling_dqn.png)tion, however, measures the the value
-of choosing a particular action when in this state. The advantage function subtracts the value of the state from the Q
-function to obtain a relative measure of the importance of
-each action.
-
-
+  The idea behind duel DQN is to change the model architecture. We will compute the value state function Q(s,a) as the sum of the Value function V(s) and an Advantage function A(s,a). Here, the value function tells how good it is to be in a state. The Q function measures how good is to choose a particular action when in this state.Thus, the advantage function subtracts the value function from the Q function to obtain how important is each action.
   ![image](images/dueling_dqn.png)
-
-
-
 
 #### Code description:
 
-- model.py : 
+- model.py :
 - dqn.py
 - agent.py
-- 
+-
 
 #### Hyperparameters:
 
