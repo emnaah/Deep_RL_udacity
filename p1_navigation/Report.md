@@ -23,7 +23,7 @@ The aim of this project is to train an agent to learn how to navigate in the ban
 - ###### Dueling DQN:
 
   The idea behind duel DQN is to change the model architecture. We will compute the value state function Q(s,a) as the sum of the Value function V(s) and an Advantage function A(s,a). Here, the value function tells how good it is to be in a state. The Q function measures how good is to choose a particular action when in this state.Thus, the advantage function subtracts the value function from the Q function to obtain how important is each action.
-  ![image](images/dueling_dqn.png)
+  ![image](images/duel_dqn.png)
 
 #### Code description:
 
