@@ -12,7 +12,7 @@ def hidden_init(layer):
 class Actor(nn.Module):
     """Actor (Policy) Model."""
 
-    def __init__(self, state_size, action_size, seed, fc1_units=128, fc2_units=128):
+    def __init__(self, state_size, action_size, seed, fc1_units=256, fc2_units=256):
         """Initialize parameters and build model.
         Params
         ======
@@ -39,7 +39,6 @@ class Actor(nn.Module):
 
     def forward(self, state):
         """Build an actor (policy) network that maps states -> actions."""
-        # import pdb ; pdb.set_trace()
         if state.dim() == 1:
             state = torch.unsqueeze(state, 0)
         x = self.bn0(state)
@@ -51,7 +50,7 @@ class Actor(nn.Module):
 class Critic(nn.Module):
     """Critic (Value) Model."""
 
-    def __init__(self, state_size, action_size, seed, fcs1_units=128, fc2_units=128):
+    def __init__(self, state_size, action_size, seed, fcs1_units=256, fc2_units=256):
         """Initialize parameters and build model.
         Params
         ======

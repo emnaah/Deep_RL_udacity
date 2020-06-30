@@ -40,9 +40,10 @@ print("The state for the first agent looks like:", states[0])
 agent = Agent(state_size=state_size, action_size=action_size, random_seed=2)
 
 
-def ddpg(n_episodes=500, max_t=1000, print_every=100):
+def ddpg(n_episodes=300, max_t=1000, print_every=100):
     scores_deque = deque(maxlen=print_every)
     scores = []
+    printed = False
     for i_episode in range(1, n_episodes + 1):
         env_info = env.reset(train_mode=True)[brain_name]  # reset the environment
         state = env_info.vector_observations[0]
@@ -76,6 +77,9 @@ def ddpg(n_episodes=500, max_t=1000, print_every=100):
                     i_episode, np.mean(scores_deque)
                 )
             )
+        # if mean(scores_deque)>30 and not printed:
+        #     print('env solved')
+        #     printed = True
 
     return scores
 
