@@ -33,7 +33,7 @@ In order to achieve the required Reward average, I had to make some more improve
 
 #### Results:
 
-![image](results/Figure1.png)
+![image](results/Figure_1.png)
 
 #### Future Work:
 - Trying out different Actor Critic methods.
