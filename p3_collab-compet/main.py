@@ -28,8 +28,8 @@ print(scores)
 import pdb; pdb.set_trace()
 fig, ax = plt.subplots()
 ax.plot(np.arange(1, len(scores) + 1), scores)
-ax.set_ylabel('Scores')
-ax.set_xlabel('Episode #')
+ax.set_ylabel('scores')
+ax.set_xlabel('episodes')
 fig.savefig("score_x_episodes.png")
 plt.show()
 
@@ -41,5 +41,3 @@ ax.set_ylabel('Scores')
 ax.set_xlabel('Episode #')
 fig.savefig("score_x_episodes_smorthed.png")
 plt.show()
-
-#https://github.com/jrandson/Tennis-udacity/blob/master/score_x_episodes.png

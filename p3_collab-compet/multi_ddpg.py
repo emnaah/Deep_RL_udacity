@@ -58,8 +58,10 @@ def ddpg(env,brain_name,agents, n_episodes=300, max_t=1000, print_every=100):
                 )
             )
         if np.mean(scores_deque)>=0.5 and not printed:
-            print('Environment is solved in {} episodes only !'.format(i_episode))
+            resolved_episode  = i_episode
             printed = True
-            break
+    print('Environment is solved in {} episodes only !'.format(resolved_episode))
+
+            # break
 
     return scores
